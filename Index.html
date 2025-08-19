@@ -1,10 +1,262 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My GitHub Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Francis Parish</title>
+  <style>
+    body {
+      font-family: "Merriweather", Georgia, serif;
+      margin: 0;
+      padding: 0;
+      background: #fdf6e3 url("https://www.transparenttextures.com/patterns/parchment.png") repeat;
+      color: #3e2723;
+    }
+
+    header {
+      background: #800020; /* velvet red */
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    header h1 { margin:0; font-size:2.5em; }
+    header p { font-style: italic; }
+
+    /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #fff;
+      background: #800020;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 1001;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      position: fixed;
+      top:0;
+      left:-250px;
+      width:250px;
+      height:100%;
+      background:#5a0f1a;
+      padding-top:100px;
+      transition:0.3s;
+      z-index:1000;
+    }
+
+    nav a {
+      display:block;
+      color:white;
+      padding:15px 25px;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    nav a:hover { background:#800020; }
+    nav.open { left:0; }
+
+    section {
+      max-width:900px;
+      margin:auto;
+      padding:40px 20px;
+      background: rgba(255,255,255,0.85);
+      margin-top:20px;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    h2 { border-bottom:2px solid #800020; padding-bottom:10px; }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      background:#800020;
+      color:white;
+      margin-top:20px;
+    }
+
+    /* Gallery Preview */
+    #gallery div {
+      display:flex;
+      gap:15px;
+      overflow-x:auto;
+      padding:10px;
+      scroll-behavior: smooth;
+    }
+
+    #gallery div img {
+      cursor:pointer;
+      border-radius:5px;
+    }
+
+    /* Modal */
+    #modal {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.8);
+      justify-content:center;
+      align-items:center;
+      z-index:2000;
+    }
+
+    #modal img {
+      max-width:90%;
+      max-height:80%;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    #modal span, #modal button {
+      position:absolute;
+      font-size:40px;
+      background:none;
+      color:white;
+      border:none;
+      cursor:pointer;
+    }
+
+    #modal span { top:20px; right:40px; }
+    #modal .prev { left:20px; top:50%; transform:translateY(-50%); }
+    #modal .next { right:20px; top:50%; transform:translateY(-50%); }
+  </style>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <p>This is my first GitHub Pages site 🚀</p>
+
+  <header>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h1>St. Francis Parish</h1>
+    <p>“Pax et Bonum — Peace and Goodness”</p>
+  </header>
+
+  <nav id="sidebar">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Our Parish</h2>
+    <p>Welcome to St. Francis Parish, a community rooted in simplicity, humility, and service. We follow the Franciscan tradition of living the Gospel with joy and compassion.</p>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <ul>
+      <li>Sunday Mass — 9:00 AM & 11:00 AM</li>
+      <li>Daily Mass — 8:00 AM</li>
+      <li>Confession — Saturdays 4:00 PM</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery Preview</h2>
+    <div>
+      <img src="https://picsum.photos/id/1015/200/150" onclick="openModal(0)">
+      <img src="https://picsum.photos/id/1016/200/150" onclick="openModal(1)">
+      <img src="https://picsum.photos/id/1018/200/150" onclick="openModal(2)">
+      <img src="https://picsum.photos/id/1020/200/150" onclick="openModal(3)">
+      <img src="https://picsum.photos/id/1024/200/150" onclick="openModal(4)">
+    </div>
+    <p style="text-align:center; margin-top:10px;">
+      <a href="gallery.html">View Full Gallery</a>
+    </p>
+  </section>
+
+  <!-- Modal for enlarged gallery -->
+  <div id="modal">
+    <span onclick="closeModal()">&times;</span>
+    <button class="prev" onclick="prevImage()">&#10094;</button>
+    <img id="modalImg" src="">
+    <button class="next" onclick="nextImage()">&#10095;</button>
+  </div>
+
+  <section id="events">
+    <h2>Upcoming Events</h2>
+    <p>Check back soon for parish events and community gatherings.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: info@stfrancisparish.org</p>
+    <p>Phone: (123) 456-7890</p>
+    <p>Address: 123 Franciscan Way, Smalltown, USA</p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 St. Francis Parish | Pax et Bonum</p>
+  </footer>
+
+<script>
+  // Sidebar toggle
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("open");
+  }
+
+  document.querySelectorAll("#sidebar a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("sidebar").classList.remove("open");
+    });
+  });
+
+  // Gallery images
+  const images = [
+    "https://picsum.photos/id/1015/600/400",
+    "https://picsum.photos/id/1016/600/400",
+    "https://picsum.photos/id/1018/600/400",
+    "https://picsum.photos/id/1020/600/400",
+    "https://picsum.photos/id/1024/600/400"
+  ];
+
+  let currentIndex = 0;
+
+  function openModal(index) {
+    currentIndex = index;
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modalImg').src = images[currentIndex];
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('modalImg').src = images[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('modalImg').src = images[currentIndex];
+  }
+
+  // Optional: keyboard navigation
+  document.addEventListener('keydown', e => {
+    const modal = document.getElementById('modal');
+    if(modal.style.display === 'flex') {
+      if(e.key === 'ArrowRight') nextImage();
+      else if(e.key === 'ArrowLeft') prevImage();
+      else if(e.key === 'Escape') closeModal();
+    }
+  });
+</script>
+
 </body>
 </html>
