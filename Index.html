@@ -12,7 +12,6 @@
       background: #fdf6e3 url("https://www.transparenttextures.com/patterns/parchment.png") repeat;
       color: #3e2723;
     }
-
     header {
       background: #800020; /* velvet red */
       color: #fff;
@@ -20,7 +19,6 @@
       padding: 40px 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
-
     header h1 { margin:0; font-size:2.5em; }
     header p { font-style: italic; }
 
@@ -39,19 +37,15 @@
       z-index: 1001;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-
     nav {
       position: fixed;
-      top:0;
-      left:-250px;
-      width:250px;
-      height:100%;
+      top:0; left:-250px;
+      width:250px; height:100%;
       background:#5a0f1a;
       padding-top:100px;
       transition:0.3s;
       z-index:1000;
     }
-
     nav a {
       display:block;
       color:white;
@@ -59,7 +53,6 @@
       text-decoration:none;
       font-size:18px;
     }
-
     nav a:hover { background:#800020; }
     nav.open { left:0; }
 
@@ -72,9 +65,10 @@
       border-radius:8px;
       box-shadow:0 2px 6px rgba(0,0,0,0.2);
     }
-
-    h2 { border-bottom:2px solid #800020; padding-bottom:10px; }
-
+    h2 {
+      border-bottom:2px solid #800020;
+      padding-bottom:10px;
+    }
     footer {
       text-align:center;
       padding:20px;
@@ -91,10 +85,23 @@
       padding:10px;
       scroll-behavior: smooth;
     }
-
     #gallery div img {
       cursor:pointer;
       border-radius:5px;
+    }
+    /* Styled Button */
+    .btn {
+      display:inline-block;
+      padding:10px 20px;
+      background:#800020;
+      color:white;
+      text-decoration:none;
+      border-radius:5px;
+      box-shadow:0 2px 4px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background:#5a0f1a;
     }
 
     /* Modal */
@@ -108,14 +115,11 @@
       align-items:center;
       z-index:2000;
     }
-
     #modal img {
-      max-width:90%;
-      max-height:80%;
+      max-width:90%; max-height:80%;
       border-radius:8px;
       box-shadow:0 2px 8px rgba(0,0,0,0.5);
     }
-
     #modal span, #modal button {
       position:absolute;
       font-size:40px;
@@ -124,14 +128,12 @@
       border:none;
       cursor:pointer;
     }
-
     #modal span { top:20px; right:40px; }
     #modal .prev { left:20px; top:50%; transform:translateY(-50%); }
     #modal .next { right:20px; top:50%; transform:translateY(-50%); }
   </style>
 </head>
 <body>
-
   <header>
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
     <h1>St. Francis Parish</h1>
@@ -142,6 +144,7 @@
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
+    <a href="#prayers">Prayers</a>
     <a href="#events">Events</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -170,7 +173,7 @@
       <img src="https://picsum.photos/id/1024/200/150" onclick="openModal(4)">
     </div>
     <p style="text-align:center; margin-top:10px;">
-      <a href="gallery.html">View Full Gallery</a>
+      <a href="gallery.html" class="btn">View Full Gallery</a>
     </p>
   </section>
 
@@ -181,6 +184,14 @@
     <img id="modalImg" src="">
     <button class="next" onclick="nextImage()">&#10095;</button>
   </div>
+
+  <section id="prayers">
+    <h2>The Power of Prayer</h2>
+    <p>Prayer is a way to connect with God, seek guidance, and find peace in times of need. Through prayer, we can share our joys, struggles, and hopes with the Lord, knowing that He listens and cares deeply for us.</p>
+    <p style="text-align:center; margin-top:15px;">
+      <a href="prayers.html" class="btn">Go to Prayers</a>
+    </p>
+  </section>
 
   <section id="events">
     <h2>Upcoming Events</h2>
@@ -204,59 +215,52 @@
     <p>&copy; 2025 St. Francis Parish | Pax et Bonum</p>
   </footer>
 
-<script>
-  // Sidebar toggle
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("open");
-  }
-
-  document.querySelectorAll("#sidebar a").forEach(link => {
-    link.addEventListener("click", () => {
-      document.getElementById("sidebar").classList.remove("open");
-    });
-  });
-
-  // Gallery images
-  const images = [
-    "https://picsum.photos/id/1015/600/400",
-    "https://picsum.photos/id/1016/600/400",
-    "https://picsum.photos/id/1018/600/400",
-    "https://picsum.photos/id/1020/600/400",
-    "https://picsum.photos/id/1024/600/400"
-  ];
-
-  let currentIndex = 0;
-
-  function openModal(index) {
-    currentIndex = index;
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('modalImg').src = images[currentIndex];
-  }
-
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById('modalImg').src = images[currentIndex];
-  }
-
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    document.getElementById('modalImg').src = images[currentIndex];
-  }
-
-  // Optional: keyboard navigation
-  document.addEventListener('keydown', e => {
-    const modal = document.getElementById('modal');
-    if(modal.style.display === 'flex') {
-      if(e.key === 'ArrowRight') nextImage();
-      else if(e.key === 'ArrowLeft') prevImage();
-      else if(e.key === 'Escape') closeModal();
+  <script>
+    // Sidebar toggle
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("open");
     }
-  });
-</script>
+    document.querySelectorAll("#sidebar a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("open");
+      });
+    });
 
+    // Gallery images
+    const images = [
+      "https://picsum.photos/id/1015/600/400",
+      "https://picsum.photos/id/1016/600/400",
+      "https://picsum.photos/id/1018/600/400",
+      "https://picsum.photos/id/1020/600/400",
+      "https://picsum.photos/id/1024/600/400"
+    ];
+    let currentIndex = 0;
+    function openModal(index) {
+      currentIndex = index;
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modalImg').src = images[currentIndex];
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('modalImg').src = images[currentIndex];
+    }
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById('modalImg').src = images[currentIndex];
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      const modal = document.getElementById('modal');
+      if(modal.style.display === 'flex') {
+        if(e.key === 'ArrowRight') nextImage();
+        else if(e.key === 'ArrowLeft') prevImage();
+        else if(e.key === 'Escape') closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
