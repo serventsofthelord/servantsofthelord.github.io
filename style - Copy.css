@@ -22,7 +22,7 @@ a:hover {
 button, .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #800020;
+    background: #c0392b;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -32,14 +32,14 @@ button, .btn {
     text-decoration: none;
 }
 button:hover, .btn:hover {
-    background: #5a0f1a;
+    background: #a93226;
 }
 
 /* =========================
    Header & Navigation
 ========================= */
 header {
-    background: #800020;
+    background: #8e2c1f;
     color: white;
     padding: 15px 20px;
     display: flex;
@@ -70,7 +70,7 @@ nav a:hover {
    Footer
 ========================= */
 footer {
-    background: #800020;
+    background: #8e2c1f;
     color: white;
     text-align: center;
     padding: 20px;
@@ -92,7 +92,7 @@ section {
 }
 
 h2 {
-    color: #800020;
+    color: #8e2c1f;
     margin-bottom: 15px;
 }
 
@@ -160,7 +160,7 @@ h2 {
 
 .prayer-card h3 {
     margin-top: 0;
-    color: #800020;
+    color: #8e2c1f;
 }
 
 /* =========================
@@ -175,7 +175,7 @@ h2 {
 
 .prayer-list h3 {
     margin-bottom: 10px;
-    color: #800020;
+    color: #8e2c1f;
 }
 
 .prayer-list ul {
